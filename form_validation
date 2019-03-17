@@ -13,7 +13,11 @@ export class AppComponent {
 		userName:['Kunal',Validators.required],
 		password: [''],
   		confirmPassword: [''],
-		// ………
+		address:this.fb.group({
+  			city:['',Validators.required],
+  			state:[''],
+  			postalCode:['']
+  		})  			
 	});
 
 
