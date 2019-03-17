@@ -1,0 +1,40 @@
+Step
+Apply validation rule to FormControl
+Provide visual feedback to validation
+Display error message
+
+Steps 1) 
+import {FormBuilder, Validators} from '@angular/forms'
+export class AppComponent {
+	constructor(private fb:FormBuilder){}
+	// group method take objects of FormControls as a key and value as an array
+	regForm = this.fb.group({
+		// First value in the array is value, second validator
+		userName:['Kunal',Validators.required],
+		password: [''],
+  		confirmPassword: [''],
+		// ………
+	});
+
+
+Step 2) 
+<form [formGroup]="regForm"> 
+        <div class="form-group">
+            <label> Username </label>
+            <input [class.is-invalid]="regForm.get('userName').invalid &&
+                                      regForm.get('userName').touched" 
+                        formControlName="userName" type="text"  class="form-control">
+        </div>
+
+Step 3) Display error message
+
+<form [formGroup]="regForm"> 
+        <div class="form-group">
+            <label> Username </label>
+            <input [class.is-invalid]="regForm.get('userName').invalid &&
+                                      regForm.get('userName').touched" 
+                        formControlName="userName" type="text"  class="form-control">
+            <small [class.d-none]="regForm.get('userName').valid ||
+                                  regForm.get('userName').untouched">User Name is required
+                                  </small>
+        </div>
